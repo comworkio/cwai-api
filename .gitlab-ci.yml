@@ -17,6 +17,7 @@ build_image:
       - cloud_environments_prod.yml
       - docker-compose-build.yml
       - docker-compose-prod.yml
+      - .gitlab-ci.yml
   tags:
     - imagesbuilder
   script:
@@ -27,8 +28,6 @@ deploy_image:
   stage: deploy
   needs:
     - build_image
-    - scan_image
-    - unittest
   script:
     - chmod +x ./ci/deploy.sh
     - ./ci/deploy.sh
@@ -45,5 +44,6 @@ deploy_image:
       - cloud_environments_prod.yml
       - docker-compose-build.yml
       - docker-compose-prod.yml
+      - .gitlab-ci.yml
   tags:
     - web
