@@ -8,5 +8,5 @@ def load_apis():
     from api.prompt import post_prompt
 
 log_msg("INFO", "[main] the application is starting with version = {}".format(os.environ['VERSION']))
-app = FastAPI(docs_url="/")
+app = FastAPI(title="cwai-api", docs_url="/")
 load_apis()

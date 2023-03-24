@@ -3,7 +3,7 @@ services:
   cwai_api_prod:
     restart: always
     container_name: cwai_api_prod
-    image: comworkio/cwai_api_prod:${VERSION}
+    image: comworkio/cwai_api:${VERSION}
     env_file: 
       - .env.prod
     ports:
