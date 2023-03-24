@@ -3,3 +3,5 @@
 export ENV="prod"
 export VERSION="${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}"
 export IMAGE_NAME="cwai_api"
+export MAX_LENGTH=500
+export NUM_RETURN_SEQUENCES=1
