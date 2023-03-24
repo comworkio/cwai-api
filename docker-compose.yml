@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  cwai_api:
+    restart: always
+    image: cwai_api:latest
+    networks:
+      - cwai_api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: api
+    env_file: 
+      - .env
+    ports:
+      - "8000:8000"
+
+networks:
+  cwai_api:
+    driver: bridge
