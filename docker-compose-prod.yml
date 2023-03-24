@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+  cwai_api_prod:
+    restart: always
+    container_name: cwai_api_prod
+    image: comworkio/cwai_api_prod:${VERSION}
+    env_file: 
+      - .env.prod
+    ports:
+      - "8111:8000"

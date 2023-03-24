@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+  cwai_api:
+    restart: always
+    image: cwai_api:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: api
+    env_file: 
+      - .env
+    ports:
+      - "8000:8000"
