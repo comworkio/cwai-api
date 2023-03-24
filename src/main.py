@@ -7,6 +7,7 @@ def load_apis():
     from api.manifest import get_manifest
     from api.prompt import post_prompt
 
-log_msg("INFO", "[main] the application is starting with version = {}".format(os.environ['VERSION']))
-app = FastAPI(title="cwai-api", docs_url="/")
+version = os.environ['VERSION']
+log_msg("INFO", "[main] the application is starting with version = {}".format(version))
+app = FastAPI(title="cwai-api", version=version, docs_url="/")
 load_apis()
