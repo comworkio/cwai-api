@@ -2,6 +2,14 @@
 
 Comwork AI API based on GPT-2
 
+This API is publicly available here: https://cwai-api.comwork.io
+
+## Git repositories
+
+* Main repo: https://gitlab.comwork.io/oss/cwai/cwai-api.git
+* Github mirror: https://github.com/idrissneumann/cwai-api.git
+* Gitlab mirror: https://gitlab.com/ineumann/cwai-api.git
+
 ## Getting started in local
 
 ## Prepare configurations
