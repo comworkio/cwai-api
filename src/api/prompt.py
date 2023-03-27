@@ -9,7 +9,8 @@ class Prompt(BaseModel):
     num_return_sequences: Optional[int] = _default_num_return_sequences
 
 @app.post("/v1/prompt")
-def post_prompt(prompt: Prompt):
+@app.post("/v2/prompt/gpt2")
+def post_gpt2_prompt(prompt: Prompt):
     response = generate_response(prompt.message, prompt.max_length, prompt.num_return_sequences)
     return {
         'status': 'ok',

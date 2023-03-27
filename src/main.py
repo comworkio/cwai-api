@@ -5,7 +5,8 @@ import os
 def load_apis():
     from api.health import get_health
     from api.manifest import get_manifest
-    from api.prompt import post_prompt
+    from api.models import get_models
+    from api.prompt import post_gpt2_prompt
 
 version = os.environ['VERSION']
 log_msg("INFO", "[main] the application is starting with version = {}".format(version))
