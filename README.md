@@ -4,6 +4,8 @@ Comwork AI API based on GPT-2
 
 This API is publicly available here: https://cwai-api.comwork.io
 
+You have also a frontend chat app available here: https://cwai.comwork.io
+
 ## Git repositories
 
 * Main repo: https://gitlab.comwork.io/oss/cwai/cwai-api.git
