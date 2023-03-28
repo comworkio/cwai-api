@@ -9,7 +9,7 @@ _model_name = 'gpt2'
 _tokenizer = GPT2Tokenizer.from_pretrained(_model_name)
 _model = GPT2LMHeadModel.from_pretrained(_model_name)
 
-class GPT2Driver(ModelDriver):
+class Gpt2Driver(ModelDriver):
     def generate_response(self, prompt, _max_length, _num_return_sequences):
         input_ids = _tokenizer.encode(prompt, return_tensors='pt')
         max_length = _max_length if is_numeric(_max_length) else _default_max_length
