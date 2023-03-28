@@ -20,6 +20,7 @@ build_image:
     changes:
       - src/api/**
       - src/utils/**
+      - src/drivers/**
       - src/*
       - ci/*
       - Dockerfile
@@ -47,6 +48,7 @@ deploy_image:
     changes:
       - src/api/**
       - src/utils/**
+      - src/drivers/**
       - src/*
       - ci/*
       - Dockerfile
