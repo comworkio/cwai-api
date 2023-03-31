@@ -12,7 +12,7 @@ _bloom_tokenizer = AutoTokenizer.from_pretrained(_bloom_model_name)
 
 class BloomDriver(ModelDriver):
     def load_model(self):
-        log_msg("INFO", "[mock] loading model...")
+        log_msg("INFO", "[bloom] loading model...")
 
     def generate_response(self, prompt: Prompt):
         input_ids = _bloom_tokenizer.encode(prompt.message, return_tensors="pt")
