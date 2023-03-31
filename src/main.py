@@ -12,7 +12,9 @@ def load_apis():
     from api.prompt import post_prompt_v1, post_prompt_v2, post_prompt_v3
 
 def load_models():
-    for model in get_all_models():
+    models = get_all_models()
+    log_msg("INFO", "Loading models : {}".format(models))
+    for model in models:
         driverModule = importlib.import_module("drivers.{}".format(model.lower()))
         Driver = getattr(driverModule, "{}Driver".format(model.capitalize()))
         Driver().load_model()

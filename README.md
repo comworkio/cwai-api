@@ -28,4 +28,15 @@ docker-compose -f docker-compose-local.yml up --build --force-recreate
 
 Then you can open http://localhost:8000 and test the API via Swagger.
 
-You can also test the prompt API like that:
+## Models
+
+* GPT2
+* Bloom (beware it'll take more than 300Gb of storage)
+
+In order to avoid downloading to much data, you can override the list of the models with this variable:
+
+```
+ENABLED_MODELS='["gpt2", "mock"]'
+```
+
+For example here, we only load the 500mb of data coming from GPT2
