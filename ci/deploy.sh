@@ -5,6 +5,7 @@ source ./ci/compute-env.sh
 ENV_FILE=".env.${ENV}"
 
 echo "VERSION=${VERSION}" > "${ENV_FILE}"
+echo "ENABLED_MODELS" >> "${ENV_FILE}"
 
 env|grep -E "^(DEFAULT)_"|while read -r; do
   echo "${REPLY}" >> "${ENV_FILE}"
