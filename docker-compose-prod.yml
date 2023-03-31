@@ -9,5 +9,5 @@ services:
     ports:
       - "8111:8000"
     volumes:
-      - /ml-research/cwai/huggingface:/root/.cache/huggingface:rwx
+      - /ml-research/cwai/huggingface:/root/.cache/huggingface:z
 
