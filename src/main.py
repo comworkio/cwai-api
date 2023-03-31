@@ -1,6 +1,9 @@
-from fastapi import FastAPI
-from utils.logger import log_msg
 import os
+import importlib
+
+from fastapi import FastAPI
+from utils.default_values import get_all_models
+from utils.logger import log_msg
 
 def load_apis():
     from api.health import get_health
@@ -8,7 +11,14 @@ def load_apis():
     from api.models import get_models
     from api.prompt import post_prompt_v1, post_prompt_v2, post_prompt_v3
 
+def load_models():
+    for model in get_all_models():
+        driverModule = importlib.import_module("drivers.{}".format(model.lower()))
+        Driver = getattr(driverModule, "{}Driver".format(model.capitalize()))
+        Driver().load_model()
+
 version = os.environ['VERSION']
 log_msg("INFO", "[main] the application is starting with version = {}".format(version))
 app = FastAPI(title="cwai-api", version=version, docs_url="/")
 load_apis()
+load_models()

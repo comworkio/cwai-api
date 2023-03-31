@@ -4,12 +4,16 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from drivers.model_driver import ModelDriver
 from models.prompt import Prompt
 from utils.default_values import get_max_length
+from utils.logger import log_msg
 
 _bloom_model_name = "bigscience/bloom"
 _bloom_model = AutoModelForCausalLM.from_pretrained(_bloom_model_name)
 _bloom_tokenizer = AutoTokenizer.from_pretrained(_bloom_model_name)
 
 class BloomDriver(ModelDriver):
+    def load_model(self):
+        log_msg("INFO", "[mock] loading model...")
+
     def generate_response(self, prompt: Prompt):
         input_ids = _bloom_tokenizer.encode(prompt.message, return_tensors="pt")
         output = _bloom_model.generate(input_ids, 

@@ -4,5 +4,9 @@ from models.prompt import Prompt
 
 class ModelDriver(ABC):
     @abstractmethod
+    def load_models(self):
+        pass
+
+    @abstractmethod
     def generate_response(self, prompt: Prompt):
         pass
