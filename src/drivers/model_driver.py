@@ -4,7 +4,7 @@ from models.prompt import Prompt
 
 class ModelDriver(ABC):
     @abstractmethod
-    def load_models(self):
+    def load_model(self):
         pass
 
     @abstractmethod
