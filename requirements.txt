@@ -3,4 +3,4 @@ transformers
 fastapi
 requests
 uvicorn[standard]
-chatterbot
+chatterbot==1.0.4
