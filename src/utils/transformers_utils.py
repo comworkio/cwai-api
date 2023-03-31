@@ -18,5 +18,5 @@ def get_response(prompt: Prompt, tokenizer, model):
 
         response = []
         for idx in range(num_return_sequences):
-            response.append(model.decode(output[idx], skip_special_tokens=prompt.settings.skip_special_tokens))
+            response.append(tokenizer.decode(output[idx], skip_special_tokens=prompt.settings.skip_special_tokens))
         return response
