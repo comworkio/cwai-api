@@ -1,4 +1,4 @@
-from api.prompt import Prompt
+from models.prompt import Prompt
 from drivers.model_driver import ModelDriver
 
 class MockDriver(ModelDriver):

@@ -1,24 +1,20 @@
-import os
-from api.prompt import Prompt
+from models.prompt import Prompt
 from drivers.model_driver import ModelDriver
 
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
-from utils.common import is_numeric
-from utils.default_values import _default_max_length, _default_num_return_sequences
+from utils.default_values import get_max_length, get_num_return_sequences
 
-_model_name = 'gpt2'
-_tokenizer = GPT2Tokenizer.from_pretrained(_model_name)
-_model = GPT2LMHeadModel.from_pretrained(_model_name)
+_gpt2_model_name = 'gpt2'
+_gpt2_tokenizer = GPT2Tokenizer.from_pretrained(_gpt2_model_name)
+_gpt2_model = GPT2LMHeadModel.from_pretrained(_gpt2_model_name)
 
 class Gpt2Driver(ModelDriver):
     def generate_response(self, prompt: Prompt):
-        input_ids = _tokenizer.encode(prompt.message, return_tensors='pt')
-        max_length = prompt.settings.max_length if is_numeric(prompt.settings.max_length) else _default_max_length
-        num_return_sequences = prompt.settings.num_return_sequences if is_numeric(prompt.settings.num_return_sequences) else _default_num_return_sequences
-
-        output = _model.generate(
+        input_ids = _gpt2_tokenizer.encode(prompt.message, return_tensors='pt')
+        num_return_sequences = get_num_return_sequences(prompt)
+        output = _gpt2_model.generate(
             input_ids,
-            max_length=max_length,
+            max_length=get_max_length(prompt),
             num_return_sequences=num_return_sequences,
             no_repeat_ngram_size=2,
             do_sample=True,
@@ -29,5 +25,5 @@ class Gpt2Driver(ModelDriver):
 
         response = []
         for idx in range(num_return_sequences):
-            response.append(_tokenizer.decode(output[idx], skip_special_tokens=True))
+            response.append(_gpt2_tokenizer.decode(output[idx], skip_special_tokens=True))
         return response

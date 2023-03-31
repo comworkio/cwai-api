@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from api.prompt import Prompt
+from models.prompt import Prompt
 
 class ModelDriver(ABC):
     @abstractmethod
