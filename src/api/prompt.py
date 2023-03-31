@@ -6,10 +6,13 @@ from pydantic import BaseModel
 
 from utils.default_values import _models, _default_max_length, _default_num_return_sequences
 
-class Prompt(BaseModel):
-    message: str
+class PromptSettings(BaseModel):
     max_length: Optional[int] = _default_max_length
     num_return_sequences: Optional[int] = _default_num_return_sequences
+
+class Prompt(BaseModel):
+    message: str
+    settings: PromptSettings
 
 @app.post("/v1/prompt")
 def post_prompt_v1(prompt: Prompt):
@@ -22,7 +25,7 @@ def post_prompt_v2(prompt: Prompt, model: str):
 def generate_prompt(prompt: Prompt, model: str):
     driverModule = importlib.import_module("drivers.{}".format(model.lower()))
     Driver = getattr(driverModule, "{}Driver".format(model.capitalize()))
-    response = Driver().generate_response(prompt.message, prompt.max_length, prompt.num_return_sequences)
+    response = Driver().generate_response(prompt)
     return {
         'status': 'ok',
         'response': response

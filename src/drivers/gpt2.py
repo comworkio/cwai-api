@@ -1,4 +1,5 @@
 import os
+from api.prompt import Prompt
 from drivers.model_driver import ModelDriver
 
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
@@ -10,10 +11,10 @@ _tokenizer = GPT2Tokenizer.from_pretrained(_model_name)
 _model = GPT2LMHeadModel.from_pretrained(_model_name)
 
 class Gpt2Driver(ModelDriver):
-    def generate_response(self, prompt, _max_length, _num_return_sequences):
-        input_ids = _tokenizer.encode(prompt, return_tensors='pt')
-        max_length = _max_length if is_numeric(_max_length) else _default_max_length
-        num_return_sequences = _num_return_sequences if is_numeric(_num_return_sequences) else _default_num_return_sequences
+    def generate_response(self, prompt: Prompt):
+        input_ids = _tokenizer.encode(prompt.message, return_tensors='pt')
+        max_length = prompt.settings.max_length if is_numeric(prompt.settings.max_length) else _default_max_length
+        num_return_sequences = prompt.settings.num_return_sequences if is_numeric(prompt.settings.num_return_sequences) else _default_num_return_sequences
 
         output = _model.generate(
             input_ids,
