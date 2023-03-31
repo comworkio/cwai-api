@@ -3,7 +3,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from drivers.model_driver import ModelDriver
 from models.prompt import Prompt
-from utils.default_values import get_max_length
+from utils.default_values import get_max_length, get_num_return_sequences
 from utils.logger import log_msg
 
 _bloom_model_name = "bigscience/bloom"
@@ -20,6 +20,7 @@ class BloomDriver(ModelDriver):
             max_length=get_max_length(prompt), 
             num_beams=5, 
             no_repeat_ngram_size=2, 
+            num_return_sequences=get_num_return_sequences(prompt),
             early_stopping=True
         )
 
