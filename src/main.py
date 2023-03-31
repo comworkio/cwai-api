@@ -1,4 +1,3 @@
-from multiprocessing import Process
 import os
 import importlib
 
@@ -22,9 +21,4 @@ version = os.environ['VERSION']
 log_msg("INFO", "[main] the application is starting with version = {}".format(version))
 app = FastAPI(title="cwai-api", version=version, docs_url="/")
 load_apis()
-
-async_process = Process( 
-    target=load_models,
-    daemon=True
-)
-async_process.start()
+load_models()
