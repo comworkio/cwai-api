@@ -1,6 +1,5 @@
 import importlib
 
-from typing import Optional
 from main import app
 
 from models.prompt import Prompt
@@ -21,10 +20,7 @@ def post_prompt_v3(prompt: Prompt, model: str):
     return generate_prompt(prompt, model)
 
 def convert_simple_to_extended(prompt: SimplePrompt):
-    extended_prompt = Prompt()
-    extended_prompt.message = prompt.message
-    extended_prompt.settings = PromptSettings()
-    return extended_prompt
+    return Prompt(message=prompt.message, settings=PromptSettings())
 
 def generate_prompt(prompt: Prompt, model: str):
     driverModule = importlib.import_module("drivers.{}".format(model.lower()))

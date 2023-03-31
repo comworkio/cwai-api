@@ -49,6 +49,7 @@ deploy_image:
       - src/api/**
       - src/utils/**
       - src/drivers/**
+      - src/models/**
       - src/*
       - ci/*
       - Dockerfile
