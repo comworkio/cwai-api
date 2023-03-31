@@ -2,7 +2,7 @@ from models.prompt import Prompt
 from drivers.model_driver import ModelDriver
 
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
-from utils.default_values import get_max_length, get_num_return_sequences
+from utils.default_values import get_max_length, get_no_repeat_ngram_size, get_num_return_sequences, get_temperature, get_top_k, get_top_p
 from utils.logger import log_msg
 
 _gpt2_model_name = 'gpt2'
@@ -20,14 +20,15 @@ class Gpt2Driver(ModelDriver):
             input_ids,
             max_length=get_max_length(prompt),
             num_return_sequences=num_return_sequences,
-            no_repeat_ngram_size=2,
-            do_sample=True,
-            top_k=50,
-            top_p=0.95,
-            temperature=0.8,
+            no_repeat_ngram_size=get_no_repeat_ngram_size(prompt),
+            do_sample=prompt.settings.do_sample,
+            early_stopping=prompt.settings.early_stopping,
+            top_k=get_top_k(prompt),
+            top_p=get_top_p(prompt),
+            temperature=get_temperature(prompt),
         )
 
         response = []
         for idx in range(num_return_sequences):
-            response.append(_gpt2_tokenizer.decode(output[idx], skip_special_tokens=True))
+            response.append(_gpt2_tokenizer.decode(output[idx], skip_special_tokens=prompt.settings.skip_special_tokens))
         return response
