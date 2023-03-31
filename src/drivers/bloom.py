@@ -5,7 +5,7 @@ from drivers.model_driver import ModelDriver
 from models.prompt import Prompt
 from utils.default_values import get_max_length
 
-_bloom_model_name = "turing-mt/bloom-100-english"
+_bloom_model_name = "bigscience/bloom"
 _bloom_model = AutoModelForCausalLM.from_pretrained(_bloom_model_name)
 _bloom_tokenizer = AutoTokenizer.from_pretrained(_bloom_model_name)
 
