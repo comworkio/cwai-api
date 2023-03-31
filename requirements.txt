@@ -3,4 +3,3 @@ transformers
 fastapi
 requests
 uvicorn[standard]
-chatterbot
