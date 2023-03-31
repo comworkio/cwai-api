@@ -6,7 +6,7 @@ def load_apis():
     from api.health import get_health
     from api.manifest import get_manifest
     from api.models import get_models
-    from api.prompt import post_prompt_v1, post_prompt_v2
+    from api.prompt import post_prompt_v1, post_prompt_v2, post_prompt_v3
 
 version = os.environ['VERSION']
 log_msg("INFO", "[main] the application is starting with version = {}".format(version))
