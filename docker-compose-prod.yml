@@ -10,4 +10,3 @@ services:
       - "8111:8000"
     volumes:
       - /ml-research/cwai/huggingface:/root/.cache/huggingface:z
-
