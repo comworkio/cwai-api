@@ -1,4 +1,4 @@
 from pydantic import BaseModel
 
-class V2Prompt(BaseModel):
+class SimplePrompt(BaseModel):
     message: str

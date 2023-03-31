@@ -5,19 +5,22 @@ from main import app
 
 from models.prompt import Prompt
 from models.prompt_settings import PromptSettings
-from models.v2_prompt import V2Prompt
+from models.simple_prompt import SimplePrompt
 from utils.default_values import get_first_model
 
 @app.post("/v1/prompt")
-def post_prompt_v1(prompt: Prompt):
-    return generate_prompt(prompt, get_first_model())
+def post_prompt_v1(prompt: SimplePrompt):
+    extended_prompt = Prompt()
+    extended_prompt.message = prompt.message
+    extended_prompt.settings = PromptSettings()
+    return generate_prompt(extended_prompt, get_first_model())
 
 @app.post("/v2/prompt/{model}")
-def post_prompt_v2(prompt: V2Prompt, model: str):
-    new_prompt = Prompt()
-    new_prompt.message = prompt.message
-    new_prompt.settings = PromptSettings()
-    return generate_prompt(new_prompt, model)
+def post_prompt_v2(prompt: SimplePrompt, model: str):
+    extended_prompt = Prompt()
+    extended_prompt.message = prompt.message
+    extended_prompt.settings = PromptSettings()
+    return generate_prompt(extended_prompt, model)
 
 @app.post("/v3/prompt/{model}")
 def post_prompt_v3(prompt: Prompt, model: str):
