@@ -5,8 +5,7 @@ import os
 
 async_process = Process( 
     target=load_models,
-    daemon=True,
-    env=os.environ
+    daemon=True
 )
 async_process.start()
 
