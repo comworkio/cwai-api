@@ -27,7 +27,7 @@ def post_prompt_v2(prompt: SimplePrompt, model: str, response: Response):
 @app.post("/v3/prompt/{model}", status_code = 200)
 def post_prompt_v3(prompt: Prompt, model: str, response: Response):
     result = generate_prompt(prompt, model)
-    if is_false(result['status'], response: Response):
+    if is_false(result['status']):
         response.status_code = 400
     return result
 
