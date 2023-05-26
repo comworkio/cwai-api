@@ -6,7 +6,7 @@ ENV_FILE=".env.${ENV}"
 
 echo "VERSION=${VERSION}" > "${ENV_FILE}"
 
-env|grep -E "^(DEFAULT)_"|while read -r; do
+env|grep -E "^(DEFAULT|LOG)_"|while read -r; do
   echo "${REPLY}" >> "${ENV_FILE}"
 done
 
