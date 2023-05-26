@@ -42,10 +42,12 @@ def generate_prompt(prompt: Prompt, model: str):
         log_msg("WARN", "[prompt] model seems not found: {}".format(e))
         return {
             'status': 'ko',
-            'response': ['model not found']
+            'response': ['model not found'],
+            'score': None
         }
     response = Driver().generate_response(prompt)
     return {
         'status': 'ok',
-        'response': response
+        'response': response['response'],
+        'score': response['score'] if 'score' in response else None
     }

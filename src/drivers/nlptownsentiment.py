@@ -16,7 +16,7 @@ emotion_mapping = {
     5: 'Love'
 }
 
-class SentimentDriver(ModelDriver):
+class NlptownsentimentDriver(ModelDriver):
     def load_model(self):
         log_msg("INFO", "[sentiment] loading model...")
 
@@ -26,4 +26,4 @@ class SentimentDriver(ModelDriver):
         probs = torch.nn.functional.softmax(outputs.logits, dim=-1)
         predicted_class = torch.argmax(probs).item() + 1
         predicted_emotion = emotion_mapping[predicted_class]
-        return ["The predicted emotion is: {}".format(predicted_emotion)]
+        return { "response": ["The predicted emotion is: {}".format(predicted_emotion)], "score": predicted_class }

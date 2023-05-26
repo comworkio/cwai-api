@@ -7,4 +7,4 @@ class MockDriver(ModelDriver):
         log_msg("INFO", "[mock] loading model...")
 
     def generate_response(self, prompt: Prompt):
-        return ["Mock response for prompt = {}".format(prompt)]
+        return { "response": ["Mock response for prompt = {}".format(prompt)] }
