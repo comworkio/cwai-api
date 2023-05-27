@@ -15,6 +15,8 @@ class ModelDriver(ABC):
 
 This API is also used as an internal component for Comwork Cloud, more details here: https://doc.cloud.comwork.io/docs/tutorials/cwai
 
+You can also find a frontend client here to test the API: https://gitlab.comwork.io/oss/cwai/cwai-chat
+
 ## Git repositories
 
 * Main repo: https://gitlab.comwork.io/oss/cwai/cwai-api.git
