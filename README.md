@@ -1,10 +1,19 @@
 # Comwork AI
 
-Comwork AI API based on GPT-2
+Comwork AI API that bring all the AI models you want as an API using a ModelDriver's abstract:
 
-This API is publicly available here: https://cwai-api.comwork.io
+```python
+class ModelDriver(ABC):
+    @abstractmethod
+    def load_model(self):
+        pass
 
-You have also a frontend chat app available here: https://cwai.comwork.io
+    @abstractmethod
+    def generate_response(self, prompt: Prompt):
+        pass
+```
+
+This API is also used as an internal component for Comwork Cloud, more details here: https://doc.cloud.comwork.io/docs/tutorials/cwai
 
 ## Git repositories
 
@@ -32,6 +41,7 @@ Then you can open http://localhost:8000 and test the API via Swagger.
 
 * GPT2
 * Bloom (beware it'll take more than 300Gb of storage)
+* bert-base-multilingual-uncased-sentiment
 
 In order to avoid downloading to much data, you can override the list of the models with this variable:
 
