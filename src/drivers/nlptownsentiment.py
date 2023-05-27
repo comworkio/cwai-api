@@ -18,7 +18,7 @@ emotion_mapping = {
 
 class NlptownsentimentDriver(ModelDriver):
     def load_model(self):
-        log_msg("INFO", "[sentiment] loading model...")
+        log_msg("INFO", "[Nlptownsentiment] loading model...")
 
     def generate_response(self, prompt: Prompt):
         inputs = _sentiment_tokenizer(prompt.message, return_tensors="pt")

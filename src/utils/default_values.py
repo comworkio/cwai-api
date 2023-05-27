@@ -4,7 +4,7 @@ import json
 from models.prompt import Prompt
 from utils.common import is_empty, is_not_empty, is_numeric
 
-_default_models = ['gpt2', 'nlptownsentiment', 'mock']
+_default_models = ['gpt2', 'nlptownsentiment', 'nltksentiment', 'mock']
 
 def get_max_length(prompt: Prompt):
     return prompt.settings.max_length if is_numeric(prompt.settings.max_length) else int(os.environ['DEFAULT_MAX_LENGTH'])

@@ -42,8 +42,8 @@ Then you can open http://localhost:8000 and test the API via Swagger.
 ## Models
 
 * GPT2
-* Bloom (beware it'll take more than 300Gb of storage)
 * bert-base-multilingual-uncased-sentiment
+* nltk
 
 In order to avoid downloading to much data, you can override the list of the models with this variable:
 
