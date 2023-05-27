@@ -13,10 +13,10 @@ class TextblobsentimentDriver(ModelDriver):
         polarity = blob.sentiment.polarity
         
         if polarity > 0:
-            sentiment = 'Postive'
+            sentiment = 'postive'
         elif polarity < 0:
-            sentiment = 'Negative'
+            sentiment = 'negative'
         else:
-            sentiment = 'Neutral'
+            sentiment = 'neutral'
         
-        return { "response": ["The predicted sentiment is: {}".format(sentiment)], "score": polarity }
+        return { "response": ["The predicted sentiment is: {}, score: {}".format(sentiment, polarity)], "score": polarity }

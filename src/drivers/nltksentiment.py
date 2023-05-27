@@ -16,10 +16,10 @@ class NltksentimentDriver(ModelDriver):
         scores = _sia.polarity_scores(prompt.message)
         
         if scores['compound'] >= 0.05:
-            sentiment = 'Postive'
+            sentiment = 'postive'
         elif scores['compound'] <= -0.05:
-            sentiment = 'Negative'
+            sentiment = 'negative'
         else:
-            sentiment = 'Neutral'
+            sentiment = 'neutral'
         
-        return { "response": ["The predicted sentiment is: {}".format(sentiment)], "score": scores['compound'] }
+        return { "response": ["The predicted sentiment is: {}, score: {}".format(sentiment, scores['compound'])], "score": scores['compound'] }

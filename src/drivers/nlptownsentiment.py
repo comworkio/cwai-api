@@ -9,11 +9,11 @@ _sentiment_model = AutoModelForSequenceClassification.from_pretrained(_sentiment
 _sentiment_tokenizer = AutoTokenizer.from_pretrained(_sentiment_model_name)
 
 emotion_mapping = {
-    1: 'Anger',
-    2: 'Dislike',
-    3: 'Neutral',
-    4: 'Like',
-    5: 'Love'
+    1: 'anger',
+    2: 'dislike',
+    3: 'neutral',
+    4: 'like',
+    5: 'love'
 }
 
 class NlptownsentimentDriver(ModelDriver):
@@ -26,4 +26,4 @@ class NlptownsentimentDriver(ModelDriver):
         probs = torch.nn.functional.softmax(outputs.logits, dim=-1)
         predicted_class = torch.argmax(probs).item() + 1
         predicted_emotion = emotion_mapping[predicted_class]
-        return { "response": ["The predicted emotion is: {}".format(predicted_emotion)], "score": predicted_class }
+        return { "response": ["The predicted emotion is: {}, score: {}".format(predicted_emotion, predicted_class)], "score": predicted_class }
