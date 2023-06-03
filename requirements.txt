@@ -5,3 +5,4 @@ requests
 uvicorn[standard]
 nltk
 textblob
+scipy
