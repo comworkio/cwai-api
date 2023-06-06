@@ -36,4 +36,4 @@ class RobertaemotionDriver(ModelDriver):
             label = _roberta_labels[ranking[i]]
             score = np.round(scores[ranking[i]], 4)
             emotions.append({label: score})
-        return {"response": ["The predicted emotions are: {}".format(emotions)], "scores": s}
+        return {"response": ["The predicted emotions are: {}".format(emotions)], "scores": emotions}
