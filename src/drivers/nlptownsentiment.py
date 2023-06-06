@@ -5,7 +5,8 @@ import torch
 from utils.logger import log_msg
 
 _sentiment_model_name = "nlptown/bert-base-multilingual-uncased-sentiment"
-_sentiment_model = AutoModelForSequenceClassification.from_pretrained(_sentiment_model_name)
+_sentiment_model = AutoModelForSequenceClassification.from_pretrained(
+    _sentiment_model_name)
 _sentiment_tokenizer = AutoTokenizer.from_pretrained(_sentiment_model_name)
 
 emotion_mapping = {
@@ -15,6 +16,7 @@ emotion_mapping = {
     4: 'like',
     5: 'love'
 }
+
 
 class NlptownsentimentDriver(ModelDriver):
     def load_model(self):
@@ -26,4 +28,4 @@ class NlptownsentimentDriver(ModelDriver):
         probs = torch.nn.functional.softmax(outputs.logits, dim=-1)
         predicted_class = torch.argmax(probs).item() + 1
         predicted_emotion = emotion_mapping[predicted_class]
-        return { "response": ["The predicted emotion is: {}, score: {}".format(predicted_emotion, predicted_class)], "score": predicted_class }
+        return {"response": ["The predicted emotion is: {}, score: {}".format(predicted_emotion, predicted_class)], "score": predicted_class}
