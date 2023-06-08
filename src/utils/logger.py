@@ -10,26 +10,26 @@ LOG_LEVEL = os.environ['LOG_LEVEL']
 SLACK_TRIGGER = os.environ['SLACK_TRIGGER']
 LOG_FORMAT = os.getenv('LOG_FORMAT')
 
-def slack_message(message, is_public):
+def slack_message(log_level, message, is_public):
     if is_true(SLACK_TRIGGER):
         token = os.getenv('SLACK_TOKEN')
         if is_public and is_not_empty(os.getenv('SLACK_TOKEN_PUBLIC')):
             if is_not_empty(token):
-                slack_message(message, False)
+                slack_message(log_level, message, False)
             token = os.environ['SLACK_TOKEN_PUBLIC']
 
-        data = {"text": message, "username": os.environ['SLACK_USERNAME'], "channel": os.environ['SLACK_CHANNEL'], "icon_emoji": os.environ['SLACK_EMOJI'] }
+        data = { "attachments": [{ "color": get_color_level(log_level), "text": message, "title": log_level }], "username": os.environ['SLACK_USERNAME'], "channel": os.environ['SLACK_CHANNEL'], "icon_emoji": os.environ['SLACK_EMOJI'] }
         requests.post("https://hooks.slack.com/services/{}".format(token),json=data)
 
-def discord_message(message, is_public):
+def discord_message(log_level, message, is_public):
     if is_true(SLACK_TRIGGER):
         token = os.getenv('DISCORD_TOKEN')
         if is_public and is_not_empty(os.getenv('DISCORD_TOKEN_PUBLIC')):
             if is_not_empty(token):
-                discord_message(message, False)
+                discord_message(log_level, message, False)
             token = os.environ['DISCORD_TOKEN_PUBLIC']
 
-        data = {"text": message, "username": os.environ['SLACK_USERNAME'] }
+        data = { "text": "[{}] {}".format(log_level, message), "username": os.environ['SLACK_USERNAME'] }
         requests.post("https://discord.com/api/webhooks/{}/slack".format(token),json=data)
 
 def is_level_partof(level, levels):
@@ -43,6 +43,16 @@ def is_warn(level):
 
 def is_error(level):
     return is_level_partof(level, ["error", "fatal", "crit"])
+
+def get_color_level(level):
+    if is_debug(level):
+        return "#D4D5D7"
+    elif is_warn(level):
+        return "#FDCB94"
+    elif is_error(level):
+        return "#D80020"
+    else:
+        return "#95C8F3"
 
 def get_int_value_level(level):
     if is_debug(level):
@@ -81,6 +91,5 @@ def log_msg(log_level, message, is_public = False):
     quiet_log_msg (log_level, message)
 
     if get_int_value_level(log_level) >= get_int_value_level(LOG_LEVEL):
-        formatted_log = "[{}] {}".format(log_level, message)
-        slack_message(formatted_log, is_public)
-        discord_message(formatted_log, is_public)
+        slack_message(log_level, message, is_public)
+        discord_message(log_level, message, is_public)
