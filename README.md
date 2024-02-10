@@ -20,7 +20,7 @@ You can also find a frontend client here to test the API: https://gitlab.comwork
 ## Git repositories
 
 * Main repo: https://gitlab.comwork.io/oss/cwai/cwai-api.git
-* Github mirror: https://github.com/idrissneumann/cwai-api.git
+* Github mirror: https://github.com/comworkio/cwai-api.git
 * Gitlab mirror: https://gitlab.com/ineumann/cwai-api.git
 
 ## Getting started in local
