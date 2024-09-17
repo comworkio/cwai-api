@@ -12,5 +12,5 @@ done
 
 mkdir -p /ml-research/cwai/huggingface
 
-docker login "${CI_REGISTRY}" --username "${CI_REGISTRY_USER}" --password "${CI_REGISTRY_PASSWORD}"
+docker login --username "${DOCKER_USERNAME}" --password "${DOCKER_ACCESS_TOKEN}"
 docker-compose -f "docker-compose-${ENV}.yml" up -d --force-recreate
